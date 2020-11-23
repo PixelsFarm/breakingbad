@@ -19,16 +19,27 @@ const Boton = styled.button`
 `
 
 function App() {
-    const consultarAPI = () => {
-        console.log('consultando...')
-    }
-    
+	//* manera larga
+	// const consultarAPI = () => {
+		// const api = fetch("https://breaking-bad-quotes.herokuapp.com/v1/quotes");
+		// const frase = api.then(respuesta => {
+		//     return respuesta.json();
+		// })
+		// frase.then(resultado => {
+		//     console.log(resultado)
+        // })
+    // };
 
-    return (
+    //* manera corta
+    const consultarAPI = async () => {
+        const api = await fetch("https://breaking-bad-quotes.herokuapp.com/v1/quotes");
+        const frase = await api.json();
+        console.log(frase[0]);
+	};
+
+	return (
 		<Contenedor>
-			<Boton 
-                onClick={consultarAPI}
-            >Obtener frase</Boton>
+			<Boton onClick={consultarAPI}>Obtener frase</Boton>
 		</Contenedor>
 	);
 }
